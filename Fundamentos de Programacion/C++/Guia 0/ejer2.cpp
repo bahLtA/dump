@@ -7,7 +7,7 @@ int main(int argc, char *argv[]) {
 	int peso;
 	float estatura,IMC;
 	cout<<"Ingrese el nombre de la persona"<<endl;
-	cin>>nombre;
+	getline(cin,nombre);
 	cout<<"Ingrese el peso (en kgs)"<<endl;
 	cin>>peso;
 	cout<<"Ingrese la estatura (en metros)"<<endl;
