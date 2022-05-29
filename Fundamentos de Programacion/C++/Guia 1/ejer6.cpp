@@ -10,14 +10,14 @@ int main(int argc, char *argv[]) {
 	int total;
 	
 	cout<<"Ingrese el nombre del chofer 1"<<endl;
-	cin>>nya1;
+	getline(cin,nya1);
 	cout<<"Ingrese el sueldo basico de "<<nya1<<endl;
 	cin>>sueldo1;
 	cout<<"Ingrese los kilometros recorridos por "<<nya1<<endl;
 	cin>>km1;
 	
 	cout<<"Ingrese el nombre del chofer 2"<<endl;
-	cin>>nya2;
+	getline(cin,nya2);
 	cout<<"Ingrese el sueldo basico de "<<nya2<<endl;
 	cin>>sueldo2;
 	cout<<"Ingrese los kilometros recorridos por "<<nya2<<endl;

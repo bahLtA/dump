@@ -9,7 +9,7 @@ int main(int argc, char *argv[]) {
 	int velocidad;
 	int hora_final;
 	cout<<"Ingrese la patente del auto"<<endl;
-	cin>>patente;
+	getline(cin,patente)
 	cout<<"Ingrese la hora de paso por el 1er puesto (HH)"<<endl;
 	cin>>hora_1er;
 	cout<<"Ingrese el minuto de paso por el 1er puesto (MM)"<<endl;
