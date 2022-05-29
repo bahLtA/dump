@@ -5,11 +5,11 @@ using namespace std;
 int main(int argc, char *argv[]) {
 	string nombre1,nombre2,nombre3;
 	cout<<"Ingrese un nombre"<<endl;
-	cin>>nombre1;
+	getline(cin,nombre1);
 	cout<<"Ingrese otro nombre"<<endl;
-	cin>>nombre2;
+	getline(cin,nombre2);
 	cout<<"Ingrese otro nombre"<<endl;
-	cin>>nombre3;
+	getline(cin,nombre3);
 	cout<<endl;
 	if (nombre1<nombre2 && nombre1<nombre3){
 		if (nombre2<nombre3){

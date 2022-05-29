@@ -7,7 +7,7 @@ int main(int argc, char *argv[]) {
 	string nya;
 	int cat,antiguedad,sueldo,sueldo_tot,monto_ant;
 	cout<<"Ingrese apellido y nombre"<<endl;
-	cin>>nya;
+	getline(cin,nya);
 	cout<<"Ingrese la categoria"<<endl;
 	cin>>cat;
 	cout<<"Ingrese la antiguedad"<<endl;

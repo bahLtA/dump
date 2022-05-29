@@ -8,9 +8,9 @@ int main(int argc, char *argv[]) {
 	bool cuota=false;
 	
 	cout<<"Ingrese el nombre de la distribuidora"<<endl;
-	cin>>distribuidora;
+	getline(cin,distribuidora);
 	cout<<"Ingrese el nombre del cliente"<<endl;
-	cin>>nya;
+	getline(cin,nya);
 	cout<<"Ingrese el precio de lista del zapato"<<endl;
 	cin>>precio_lista;
 	cout<<"Ingrese la cantidad de zapatos comprados (pares)"<<endl;

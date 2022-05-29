@@ -15,7 +15,7 @@ int main(int argc, char *argv[]) {
 	cin>>precio_fruta;
 	
 	cout<<"Ingrese el nombre del cliente"<<endl;
-	cin>>nya;
+	getline(cin,nya);
 	cout<<"Ingrese el gusto (DDL, Frutal o Mouse)"<<endl;
 	cin>>gusto;
 	cout<<"Ingrese el tipo de caja (6, 12 o 24)"<<endl;

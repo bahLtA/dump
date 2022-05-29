@@ -9,11 +9,11 @@ int main(int argc, char *argv[]) {
 	cout<<"Ingrese el valor de la cuota base"<<endl;
 	cin>>cuota_activo;
 	cout<<"Ingrese el nombre del club"<<endl;
-	cin>>nombre_club;
+	getline(cin,nombre_club);
 	cout<<"Ingrese el numero de socio"<<endl;
 	cin>>num_socio;
 	cout<<"Ingrese nombre y apellido del socio"<<endl;
-	cin>>nya;
+	getline(cin,nya);
 	cout<<"Ingrese el tipo de socio (en MAYUSCULAS)"<<endl;
 	cin>>socio;
 	
