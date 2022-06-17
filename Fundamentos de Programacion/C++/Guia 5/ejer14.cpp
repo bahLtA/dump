@@ -25,7 +25,7 @@ int main(int argc, char *argv[]) {
 		cin.ignore();
 		
 		cont++;
-	} while(cont!=2);
+	} while(cont!=500);
 	
 	promedio=suma_altura/500;
 	
