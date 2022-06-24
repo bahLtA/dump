@@ -1,94 +1,101 @@
 #include <iostream>
 #include <string>
-#include <iomanip>
 using namespace std;
 
 int main(int argc, char *argv[]) {
-	string reparticion[500][3],responsable_menos; //0 para Nombre de reparticion, 1 para Nombre del Responsable, 2 para nombre de area
-	int n,cont=0,cod,precio_i7,cont_cambio_global=0;
-	int equipo[500][4];//0 para i7, 1 para i5, 2 para i3, 3 para pentium o inferiores
-	int cont_cambio[500],menos_gasto=9999;
+	int n,precio_i7,cod,aux,cant_cambio[500],cant_cambio_global=0,cant_areas[500],equipos[500][4],tot=0,menor=99999; //0 para i7, 1 para i5, 2 para i3 y 4 para pentium e inferiores
+	string nombres[500][2],area,resp_menos; //0 para nombre de reparticion, 1 para nombre de representante
 	
-	cout<<"Ingrese la cantidad de reparticiones"<<endl;
+	cout<<"Ingrese N"<<endl;
 	cin>>n;
-	cout<<"Ingrese el precio del equipo con el i7"<<endl;
+	
+	cout<<"Ingrese el precio de las computadoras con i7"<<endl;
 	cin>>precio_i7;
+	cin.ignore();
 	
-	//Inicializa el contador de las que hay que cambiar
 	for (int i=0;i<n;i++){
-		cont_cambio[i]=0;
+		for (int j=0;j<4;j++){
+			equipos[i][j]=0;
+		}
+		cant_areas[i]=0;
+		cant_cambio[i]=0;
 	}
 	
 	for (int i=0;i<n;i++){
-		cout<<"Ingrese el nombre de la reparticion"<<endl;
-		getline(cin,reparticion[i][0]);
-		cout<<"Ingrese el nombre del responsable de la reparticion"<<endl;
-		getline(cin,reparticion[i][1]);
+		cout<<"Ingrese el nombre de la reparticion "<<i+1<<endl;
+		getline(cin, nombres[i][0]);
+		cout<<"Ingrese el nombre del representante"<<endl;
+		getline(cin, nombres[i][1]);
 	}
 	
-	cout<<"Ingrese el codigo de reparticion"<<endl;
+	cout<<"Ingrese el codigo de la reparticion"<<endl;
 	cin>>cod;
 	
 	while (cod!=9999){
 		cout<<"Ingrese el nombre del area"<<endl;
-		getline(cin,reparticion[cod-1][2]);
+		getline(cin,area);
+		cant_areas[cod-1]++;
+		
 		cout<<"Ingrese la cantidad de equipos i7"<<endl;
-		cin>>equipo[cod-1][0];
+		cin>>aux;
+		equipos[cod-1][0]+=aux;
+		
 		cout<<"Ingrese la cantidad de equipos i5"<<endl;
-		cin>>equipo[cod-1][1];
+		cin>>aux;
+		equipos[cod-1][1]+=aux;
+		
 		cout<<"Ingrese la cantidad de equipos i3"<<endl;
-		cin>>equipo[cod-1][2];
-		cout<<"Ingrese la cantidad de equipos Pentium o inferior"<<endl;
-		cin>>equipo[cod-1][3];
+		cin>>aux;
+		equipos[cod-1][2]+=aux;
 		
-		cont_cambio[cod-1]+=equipo[cod-1][2]+equipo[cod-1][3];
+		cant_cambio[cod-1]+=aux;
 		
-		cont_cambio_global+=cont_cambio[cod-1];
+		cout<<"Ingrese la cantidad de equipos Pentium o inferiores"<<endl;
+		cin>>aux;
+		equipos[cod-1][3]+=aux;
 		
-		cont+=equipo[cod-1][0]+equipo[cod-1][1]+equipo[cod-1][2]+equipo[cod-1][3];
+		cant_cambio[cod-1]+=aux;
 		
-		cin.ignore();
+		cant_cambio_global+=cant_cambio[cod-1];
+		
+		cout<<"Ingrese el codigo de la reparticion"<<endl;
+		cin>>cod;
 	}
 	
 	//a)
+	cout<<"Repartición Cant.Áreas i7 i5 i3 Pentium o Inf. Total a cambiar Porcentaje"<<endl;
 	
-	cout<<"Reparticion"<<setw(15);
-	cout<<"Nombre del area"<<setw(17);
-	cout<<"i7"<<setw(5);
-	cout<<"i5"<<setw(5);
-	cout<<"i3"<<setw(5);
-	cout<<"Pentium o Inf."<<setw(15);
-	cout<<"Total a cambiar"<<setw(17);
-	cout<<"Porcentaje"<<setw(15);
-	cout<<endl;
 	for (int i=0;i<n;i++){
-		cout<<reparticion[i][0]<<setw(15);
-		cout<<reparticion[i][2]<<setw(17);
-		cout<<equipo[i][0]<<setw(5);
-		cout<<equipo[i][1]<<setw(5);
-		cout<<equipo[i][2]<<setw(5);
-		cout<<equipo[i][3]<<setw(15);
-		cout<<cont_cambio[i]<<setw(17);
-		cout<<((equipo[i][0]+equipo[i][1]+equipo[i][2]+equipo[i][3])*cont_cambio[i])/100<<"%"<<setw(15);
-		cout<<endl;
+		cout<<nombres[i][0]<<" ";
+		cout<<cant_areas[i]<<" ";
+		cout<<equipos[i][0]<<" ";
+		cout<<equipos[i][1]<<" ";
+		cout<<equipos[i][2]<<" ";
+		cout<<equipos[i][3]<<" ";
+		for (int j=0;j<4;j++){
+			tot+=equipos[i][j];
+		}
+		cout<<cant_cambio[i]<<" ";
+		cant_cambio_global+=cant_cambio[i];
+		cout<<(cant_cambio*100)/(equipos[i][0]+equipos[i][1]+equipos[i][2]+equipos[i][3])<<"% "<<endl;
 	}
 	
-	cout<<"Porcentaje de cambio en total: "<<((cont*cont_cambio_global)/100)<<"%"<<endl;
+	cout<<"Porcentaje de cambio en total: "<<(cant_cambio_global*100)/tot<<endl;
 	
 	//b)
+	cout<<"Gasto por reparticion: "<<endl;
 	for (int i=0;i<n;i++){
-		cout<<"Reparticion: "<<reparticion[i][0]<<endl;
-		cout<<"Gasto: $"<<cont_cambio_global*precio_i7<<endl;
-		if ((menos_gasto)<(cont_cambio[i]*precio_i7)){
-			menos_gasto=cont_cambio[i]*precio_i7;
-			responsable_menos=reparticion[i][1];
-		}
+		cout<<"Reparticion: "<<nombres[i][0]<<endl;
+		cout<<"Gasto: $"<<cant_cambio[i]*precio_i7<<endl;
 	}
 	
 	//c)
-	cout<<"El responsable que menos debe gastar: "<<responsable_menos<<" Con un total de $"<<menos_gasto<<endl;
-	
-	
+	for (int i=0;i<n;i++){
+		if ((cant_cambio*precio_i7)<menor){
+			menor=cant_cambio*precio_i7;
+			resp_menos=nombres[i][1];
+		}
+	}
 	return 0;
 }
 
